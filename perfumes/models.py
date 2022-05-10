@@ -8,7 +8,7 @@ NOTES = [
     'Bergamot', 'Bitter Orange', 'Grapefruit',
     'Lemongrass', 'Mandarin', 'Blackcurrant', 'Juniper Berry', 'Pear',
     'Cherry Blossom', 'Frangipani', 'Gardenia', 'Geranium',
-    'Jasmine', 'Lavender', 'Lily', 'Lily of the Valley', 'Magnolia',
+    'Jasmine', 'Lavender', 'Lily', 'Hedione', 'Lily of the Valley', 'Magnolia',
     'Peony', 'Rose', 'Tuberose', 'Ylang Ylang', 'Amber', 'Cardamom',
     'Patchouli', 'Saffron', 'Tobacco', 'Vanilla', 'Oud', 'Cedarwood',
     'Oakmoss', 'Sandalwood', 'Vetiver'
@@ -20,8 +20,9 @@ class Perfume(models.Model):
 
     perfume_name = models.CharField(max_length=20)
     notes = models.CharField(
-        max_length=20,
-        choices=NOTES.sort())
+        max_length=400,
+        choices=NOTES.sort(),
+        default='N/A')
 
     brand_name = models.ForeignKey(
         Brand, null=True, blank=True, on_delete=models.CASCADE, related_name="perfumes")
@@ -31,8 +32,9 @@ class Perfume(models.Model):
     comment = models.CharField(max_length=500, null=True, blank=True)
     perfume_image = models.CharField(max_length=4000, null=False, blank=False)
 
-    createdBy = models.ForeignKey(
+    creator = models.ForeignKey(
         PerfumesUser, related_name="perfumes", null=True, on_delete=models.CASCADE)
+
     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):

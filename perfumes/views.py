@@ -1,16 +1,16 @@
 from rest_framework import generics
 
-from .models import Perfume
-from .serializers import PerfumeSerializer
 from backend.permissions import IsCreator
+from perfumes.models import Perfume
+from perfumes.serializers import PerfumeSerializer
 
 
 class PerfumeListView(generics.ListCreateAPIView):
     queryset = Perfume.objects.all()
-    serialized_class = PerfumeSerializer
+    serializer_class = PerfumeSerializer
 
 
 class PerfumeDetailView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsCreator]
     queryset = Perfume.objects.all()
-    serialized_class = PerfumeSerializer
+    serializer_class = PerfumeSerializer

@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
+from backend.permissions import IsCreator
 
 from users.models import PerfumesUser
 
@@ -20,3 +21,9 @@ class RegisterView(generics.CreateAPIView):
     permission_classes = [AllowAny]
     queryset = PerfumesUser.objects.all()
     serializer_class = RegisterSerializer
+
+
+class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsCreator]
+    queryset = PerfumesUser.objects.all()
+    serializer_class = UserSerializer

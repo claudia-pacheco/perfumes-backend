@@ -21,7 +21,7 @@ class IsCreatorOrReadOnly(permissions.BasePermission):
         # POST
         if request.method in permissions.SAFE_METHODS:
             return True
-        return obj.createdBy == request.user
+        return obj.creator == request.user
 
 
 class IsSafeMethod(permissions.BasePermission):
@@ -29,6 +29,13 @@ class IsSafeMethod(permissions.BasePermission):
 
     def has_object_permission(self, request, view, obj):
         return request.method in permissions.SAFE_METHODS
+
+
+class IsPremiumUser(permissions.BasePermission):
+    message = 'You have to be a premium user for this action'
+
+    def has_object_permission(self, request, view, obj):
+        return request.user.is_premium
 
 
 class IsPutOrGetMethod(permissions.BasePermission):
@@ -40,4 +47,4 @@ class IsCreator(permissions.BasePermission):
     message = 'You have to be the creator in order to amend this fragrance'
 
     def has_object_permission(self, request, view, obj):
-        return obj.createdBy == request.user
+        return obj.creator == request.user

@@ -9,9 +9,9 @@ from brands.serializers import BrandSerializer
 
 class BrandListView(generics.ListCreateAPIView):
     queryset = Brand.objects.all()
-    serialized_class = BrandSerializer
+    serializer_class = BrandSerializer
 
 
 class BrandDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Brand.objects.all()
-    serialized_class = BrandSerializer
+    serializer_class = BrandSerializer
