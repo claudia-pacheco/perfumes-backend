@@ -17,25 +17,26 @@ class PerfumeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def create(self, data):
-        brand_data = data.pop("brand")
+        brand_data = data.pop("brand_name")
 
         # perfume = perfume(**data)
         perfume = Perfume(
-            title=data["title"],
-            year_of_publication=data['year_of_publication'],
-            rating=data['rating'],
-            genre=data['genre'],
-            language=data['language'],
+            perfume_name=data["perfume_name"],
+            notes=data['notes'],
+            description=data['description'],
+            price=data['price'],
+            comment=data['comment'],
+            perfume_image=data['perfume_image'],
         )
 
         if brand_data:
             brand, _created = Brand.objects.get_or_create(**brand_data)
-            perfume.brand = brand
+            perfume.brand_name = brand
 
         # set the creator of a perfume to be the currently logged-in user
         request = self.context.get("request")
         if request and hasattr(request, "user"):
-            perfume.createdBy = request.user
+            perfume.creator = request.user
 
         # Need to save to get the id
         perfume.save()
@@ -44,12 +45,14 @@ class PerfumeSerializer(serializers.ModelSerializer):
         return perfume
 
     def update(self, perfume, data):
-        brand_data = data.pop("brand")
+        brand_data = data.pop("brand_name")
 
-        perfume.title = data.get("title", perfume.title)
-        perfume.rating = data.get("rating", perfume.rating)
-        perfume.year_of_publication = data.get(
-            "year_of_publication", perfume.year_of_publication)
+        perfume.perfume_name = data.get("perfume_name", perfume.perfume_name)
+        perfume.notes = data.get("notes", perfume.notes)
+        perfume.description = data.get("description", perfume.description)
+        perfume.price = data.get["price", perfume.price]
+        perfume.perfume_image = data.get["perfume_image",
+                                         perfume.perfume_image]
 
         if brand_data:
             brand, _created = Brand.objects.get_or_create(**brand_data)
