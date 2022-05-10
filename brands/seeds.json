@@ -1,12 +1,14 @@
 [
   {
+    "id:": 1,
     "brand_name": "Maison Francis Kurkdjian",
     "logo": "https://www.agoratopia.com/wp-content/uploads/2021/11/designers-maison-francis-kurkdjian-1.png",
     "description": "Maison Francis Kurkdjian was born in 2009 from the encounter between Francis Kurkdjian, a renowned perfumer with scores of successful creations to his name, and Marc Chaya, Co-founder and President of the fragrance house. Together, they fulfilled their desire for a sensual, generous and multi-facetted landscape of olfactory free expression, creating a new emblem of French know-how and lifestyle.",
     "creators": "Francis Kurkdjian, Marc Chaya",
     "country": "France"
   },
-    {
+  {
+    "id:": 2,
     "brand_name": "MIZENSIR",
     "logo": "https://cdn.shopify.com/s/files/1/0252/2877/1433/files/logo_head_site_200x60_01d426ec-5c3f-411d-abb9-41da2d7dcfb2_300x.png?v=1561713748",
     "description": "THE HISTORY OF MIZENSIR BEGAN IN 1999 WITH SCENTED CANDLES ALL SIGNED BY A GREAT NOSE, ALBERTO MORILLAS, A PERFUMER BY TRADE AND RENOWNED IN FINE PERFUMERY.",
