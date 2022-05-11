@@ -48,3 +48,10 @@ class IsCreator(permissions.BasePermission):
 
     def has_object_permission(self, request, view, obj):
         return obj.creator == request.user
+
+
+class IsSelf(permissions.BasePermission):
+    message = 'You are not allowed to see this profile.'
+
+    def has_object_permission(self, request, view, obj):
+        return obj == request.user

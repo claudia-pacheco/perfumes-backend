@@ -17,7 +17,7 @@ class PerfumeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def create(self, data):
-        brand_data = data.pop("brand_name")
+        brand_data = data.pop("brand")
 
         # perfume = perfume(**data)
         perfume = Perfume(
@@ -31,7 +31,7 @@ class PerfumeSerializer(serializers.ModelSerializer):
 
         if brand_data:
             brand, _created = Brand.objects.get_or_create(**brand_data)
-            perfume.brand_name = brand
+            perfume.brand = brand
 
         # set the creator of a perfume to be the currently logged-in user
         request = self.context.get("request")

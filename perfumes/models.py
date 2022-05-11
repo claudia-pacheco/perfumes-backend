@@ -5,13 +5,18 @@ from brands.models import Brand
 
 
 NOTES = [
-    'Bergamot', 'Bitter Orange', 'Grapefruit',
-    'Lemongrass', 'Mandarin', 'Blackcurrant', 'Juniper Berry', 'Pear',
-    'Cherry Blossom', 'Frangipani', 'Gardenia', 'Geranium',
-    'Jasmine', 'Lavender', 'Lily', 'Hedione', 'Lily of the Valley', 'Magnolia',
-    'Peony', 'Rose', 'Tuberose', 'Ylang Ylang', 'Amber', 'Cardamom',
-    'Patchouli', 'Saffron', 'Tobacco', 'Vanilla', 'Oud', 'Cedarwood',
-    'Oakmoss', 'Sandalwood', 'Vetiver'
+    ('berg', 'Bergamot'),  ('b-orange', 'Bitter Orange'), ('g-fruit', 'Grapefruit'),
+    ('lemon', 'Lemongrass'), ('mandarin',
+                              'Mandarin'), ('b-currant', 'Blackcurrant'),
+    ('j-berry', 'Juniper Berry'), ('pear', 'Pear'), ('cherry', 'Cherry Blossom'),
+    ('gard', 'Gardenia'), ('gera', 'Geranium'),
+    ('jas', 'Jasmine'), ('lav', 'Lavender'),
+    ('hed', 'Hedione'), ('lilly', 'Lily of the Valley'), ('mag', 'Magnolia'),
+    ('peo', 'Peony'), ('rose', 'Rose'), ('tub', 'Tuberose'),
+    ('ylg', 'Ylang Ylang'), ('amber', 'Amber'), ('card', 'Cardamom'),
+    ('path', 'Patchouli'), ('saff', 'Saffron'), ('tob', 'Tobacco'),
+    ('van', 'Vanilla'), ('oud', 'Oud'), ('ced', 'Cedarwood'),
+    ('oak', 'Oakmoss'), ('sand', 'Sandalwood'), ('vet', 'Vetiver')
 ]
 
 
@@ -21,19 +26,19 @@ class Perfume(models.Model):
     perfume_name = models.CharField(max_length=20)
     notes = models.CharField(
         max_length=400,
-        choices=NOTES.sort(),
+        choices=NOTES,
         default='N/A')
 
-    brand_name = models.ForeignKey(
+    brand = models.ForeignKey(
         Brand, null=True, blank=True, on_delete=models.CASCADE, related_name="perfumes")
 
-    description = models.CharField(max_length=350, null=True, blank=True)
+    description = models.CharField(max_length=4000, null=True, blank=True)
     price = models.FloatField(null=False, blank=False)
     comment = models.CharField(max_length=500, null=True, blank=True)
     perfume_image = models.CharField(max_length=4000, null=False, blank=False)
 
     creator = models.ForeignKey(
-        PerfumesUser, related_name="perfumes", null=True, on_delete=models.CASCADE)
+        PerfumesUser, related_name="perfumes", null=True, blank=True, on_delete=models.CASCADE)
 
     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
