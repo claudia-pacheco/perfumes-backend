@@ -43,4 +43,4 @@ class Perfume(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
-        return f"{self.perfume_name} - {self.brand_name}"
+        return f"{self.perfume_name} - {self.brand}"
