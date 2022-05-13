@@ -16,7 +16,8 @@ DEBUG = True
 ALLOWED_HOSTS = ["cloud9-scents.herokuapp.com",
                  "localhost", "127.0.0.1"]
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',  # Our react app gets hosted on port `3000`
+    'http://localhost:3000',
+    'https://cloud9-scents.netlify.app'   # Our react app gets hosted on port `3000`
 ]
 # Application definition
 
